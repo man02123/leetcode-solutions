@@ -10,26 +10,42 @@
  * };
  */
 class Solution {
-public:map<pair<TreeNode*,bool>,int> mp;
-    int rob(TreeNode* root) {
-        bool take=true;
-        int y=help(root,take);
+public://unordered_map<TreeNode*,int> mp;
+//     int rob(TreeNode* root) {
+//         bool take=true;
+//         int y=help(root,take);
         
-        return y;
+//         return y;
         
-    }
-    int help(TreeNode* root,bool pstate)
+//     }
+//     int help(TreeNode* root,bool pstate)
+//     {
+//         if(root==NULL)return 0;
+//         if(mp.find(root)!=mp.end())return mp[root];
+        
+//         if(pstate==true)
+//         {
+//             int t=root->val+help(root->left,false)+help(root->right,false);
+//             int nt=help(root->left,true)+help(root->right,true);
+//             return mp[root]=max(t,nt);
+//         }
+//            return mp[root]=help(root->left,true)+help(root->right,true);
+        
+//     }
+    unordered_map<TreeNode *,int> map;
+    int rob(TreeNode* root) 
     {
-        if(root==NULL)return 0;
-        if(mp.find({root,pstate})!=mp.end())return mp[{root,pstate}];
+        if(!root)
+            return 0;
+        if(map.count(root))
+            return map[root];
+        int total=0;
+        if(root->left)
+            total+= rob(root->left->left)+rob(root->left->right);
+        if(root->right)
+            total+=rob(root->right->left)+rob(root->right->right);
         
-        if(pstate==true)
-        {
-            int t=root->val+help(root->left,false)+help(root->right,false);
-            int nt=help(root->left,true)+help(root->right,true);
-            return mp[{root,pstate}]=max(t,nt);
-        }
-           return mp[{root,pstate}]=help(root->left,true)+help(root->right,true);
+        return map[root]=max(root->val+total,rob(root->left)+rob(root->right));
         
     }
 };
