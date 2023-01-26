@@ -11,17 +11,15 @@
  */
 class Solution {
 public:vector<int> res;
+    int maxf;
     unordered_map<int,int> mp;
     vector<int> findFrequentTreeSum(TreeNode* root) {
+        maxf=0;
      int x= solve(root);
      
         bool flag=true;
-        int f1=0;
-        
         for(auto it:mp)
-            f1=max(f1,it.second);
-        for(auto it:mp)
-            if(it.second==f1)
+            if(it.second==maxf)
                 res.push_back(it.first);
         
         return res;
@@ -30,9 +28,9 @@ public:vector<int> res;
     {
         if(root==NULL)
             return 0;
-        
        int f=solve(root->left) + solve(root->right)+root->val;
         mp[f]++;
+        maxf=max(maxf,mp[f]);
         return f;   
     }
     
