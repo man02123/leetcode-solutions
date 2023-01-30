@@ -5,19 +5,19 @@ public:
     bool wordBreak(string s, vector<string>& w) {
         for(auto it:w)
             mp[it]=false;
-        vector<vector<int>> dp(s.size()+1,vector<int>(s.size()+1,-1));
+        vector<int> dp(s.size()+1,-1);
         
     return solve(s,0,s.size(),dp);
         
         
     }
-    bool solve(string &s,int start,int end,vector<vector<int>> &dp)
+    bool solve(string &s,int start,int end,vector<int> &dp)
     {
         if(start>=end)
             return true;
         
-        if(dp[start][end]!=-1)
-            return dp[start][end];
+        if(dp[start]!=-1)
+            return dp[start];
         
         bool flag=false;
         for(int i=start;i<end;i++)
@@ -27,7 +27,7 @@ public:
                 flag=flag || solve(s,i+1,end,dp);  
             }
         }
-        return dp[start][end]= flag;
+        return dp[start]= flag;
      
     }
 };
