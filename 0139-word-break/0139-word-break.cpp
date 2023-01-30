@@ -1,10 +1,10 @@
 class Solution {
 public:
     //int dp[301][301];
-    unordered_map<string,int> mp; 
+    unordered_set<string> mp; 
     bool wordBreak(string s, vector<string>& w) {
         for(auto it:w)
-            mp[it]=false;
+            mp.insert(it);
         vector<int> dp(s.size()+1,-1);
         
     return solve(s,0,s.size(),dp);
