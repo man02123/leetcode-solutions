@@ -13,7 +13,7 @@ public:
             hash[i]=i;
             for(int j=0;j<i;j++)
             {
-                if((nums[i]%nums[j]==0 || nums[j]%nums[i]==0) && dp[j]+1>dp[i])
+                if(nums[i]%nums[j]==0 && dp[j]+1>dp[i])
                 {
                     dp[i]=dp[j]+1;
                     hash[i]=j;
