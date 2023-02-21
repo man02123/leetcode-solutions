@@ -13,7 +13,8 @@ public:int dp[501];
             int locmax=0,ans=0;
             int n=arr.size();
             
-            for(int s=ind;s<min(ind+k,n);s++)
+            for(int s=ind;s<min(ind+k,n);s++)//most important loop to understand because (ind+k)
+                //ka matalab hai ki ek bar me loop sirf k element hi lega 
             {
                     locmax=max(locmax,arr[s]);
                     int tsum=((s+1-ind)*locmax) + solve(arr,s+1,k);
