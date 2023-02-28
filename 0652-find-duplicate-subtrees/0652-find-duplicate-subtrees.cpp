@@ -14,27 +14,19 @@ public:unordered_map<string,int> mp;
         vector<TreeNode*> ans;
     vector<TreeNode*> findDuplicateSubtrees(TreeNode* root) {
         string temp;
-        help(root,temp);
+        help(root);
         return ans;
         
     }
-    string help(TreeNode* root,string s)
+    string help(TreeNode* root)
     {
         if(root==NULL)
-        {
-            s.push_back('x');
-            return s;
-        }
+            return "";
+        
        
          
-        string l=help(root->left,s);
+        string rt="("+help(root->left)+to_string(root->val)+help(root->right)+")";
         
-        if(l=="x")
-        l.back()='L';
-        
-        string rt=l+to_string(root->val);
-        string r=help(root->right,s) ;
-        rt+=r;
         
          mp[rt]++;
         
