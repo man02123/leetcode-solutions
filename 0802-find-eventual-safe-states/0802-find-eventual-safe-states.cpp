@@ -6,13 +6,8 @@ public:
         
         for(int i=0;i<g.size();i++)
             for(int j=0;j<g[i].size();j++)
-                newgraph[g[i][j]].push_back(i);
+                newgraph[g[i][j]].push_back(i),outdegree[i]++;;
         
-       for(auto it:newgraph)
-       {
-           for(int i=0;i<it.size();i++)
-               outdegree[it[i]]++;
-       }
         
         
         queue<int> q;
