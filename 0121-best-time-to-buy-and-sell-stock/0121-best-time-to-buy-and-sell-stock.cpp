@@ -2,14 +2,13 @@ class Solution {
 public:
     int maxProfit(vector<int>& p) {
         int minelem=p[0];
-        int res=INT_MIN;
-        for(int i=1;i<p.size();i++)
+        int res=0;
+        for(int i=0;i<p.size();i++)
         {
-            res=max(p[i]-minelem,res);
+            res=max(res,p[i]-minelem);
             minelem=min(minelem,p[i]);
         }
-        if(res<0)return 0;
-        else
-            return res;
+        return res;
+        
     }
 };
