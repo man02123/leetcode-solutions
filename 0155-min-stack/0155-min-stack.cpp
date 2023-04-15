@@ -6,43 +6,35 @@ public:stack<int> st;
     }
     
     void push(int val) {
-       if(st.size()==0)
-       {
-           mn=val;
-           st.push(val);
-       }
+       if(st.size()>0)
+           mn=min(st.top(),val);
         else
-        {
-           if(val>mn)
-               st.push(val);
-            else
-            {
-                st.push(mn);
-                mn=val;
-                st.push(val);
-            }
-        }
+            mn=val;
+        
+        st.push(val);
+        st.push(mn);
     }
     
     void pop() {
-        if(st.size()==0)
-            return ;
-       if(st.top()!=mn)
-           st.pop();
-        else
-        {
-            st.pop();
-            if(st.size()>0)
-            {
+        int mini=st.top();
+        st.pop();
+        
+        int elem=st.top();
+        st.pop();
+        
+        if(mini==elem  && st.size()>0)
             mn=st.top();
-            st.pop();
-            }
-        }
+        else if(st.size()==0)
+            mn=INT_MAX;
+               
     }
     
     int top() {
-        
-        return st.top();
+        int temp=st.top();
+        st.pop();
+        int res=st.top();
+        st.push(temp);
+        return res;
     }
     
     int getMin() {
