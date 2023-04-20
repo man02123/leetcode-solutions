@@ -13,24 +13,22 @@ class Solution {
 public:int maxi;
     int maxPathSum(TreeNode* root) {
         maxi=root->val;
-        
-          int x= help(root,0);
+       psum(root,0);
         return maxi;
     }
-    int help(TreeNode* root,int m)
+    int psum(TreeNode* root,int sum)
     {
-        if(root==NULL)return 0;
+        if(root==NULL)
+            return 0;
         
-        int l=max(help(root->left,0),0);
-        int r=max(help(root->right,0),0);
+        int l= max(psum(root->left,sum),0);
+        int r=max(psum(root->right,sum),0);
         
-        int psum=l+root->val+r;
+        int res=l+r+root->val;
         
-         maxi=max(maxi,psum);
-    
+        maxi=max(maxi,res);
         
-        return root->val+(max(l,r));
-       
+        return max(l,r)+root->val;
         
     }
 };
