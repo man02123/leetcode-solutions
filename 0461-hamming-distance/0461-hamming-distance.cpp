@@ -1,15 +1,16 @@
 class Solution {
 public:
     int hammingDistance(int x, int y) {
-       string a = bitset<32>(x).to_string();
-        string b = bitset<32>(y).to_string();
-        
+       int xr = x^y;
         int res=0;
-        for(int i=0;i<32;i++)
-        {
-            if(a[i]!=b[i])
-                res++;
-        }
+        int i=0;
+           while(i<32)
+           {
+               int bit=xr>>i;
+               
+               i++;
+               res+=bit&1;
+           }
       
         return res;
     }
