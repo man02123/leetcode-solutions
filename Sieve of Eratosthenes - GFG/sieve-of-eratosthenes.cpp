@@ -20,10 +20,13 @@ public:
         }
         for(int i=3;i*i<=n;i++)
         {
+            if(temp[i]==i)
+            {
             for(int j = i*i;j<=n;j+=i)
             {
                 if(temp[j]=j)
                 temp[j] = i;
+            }
             }
         }
         vector<int> res;
