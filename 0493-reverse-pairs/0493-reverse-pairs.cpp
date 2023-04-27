@@ -23,20 +23,20 @@ public:
         int i= l,j =mid+1;
         int cnt =0;
         
-        // while(i<=mid && j<=r)
-        // {
-        //     while(j<=r && nums[i]>=2*(long long)nums[j])
-        //         j++;
-        //     if(j<=r && nums[i]<2*(long long)nums[j])
-        //         cnt+=j-(mid+1);
-        //     i++;
-        // }
-        for (int i = l; i <= mid; i++) {
-    while (j <= r && nums[i] > 2  * (long long)nums[j]) {
-      j++;
-    }
-    cnt += (j - (mid + 1));
-  }
+        while(i<=mid)
+        {
+            while(j<=r && nums[i]>2*(long long)nums[j])
+                j++;
+            
+                cnt+=j-(mid+1);
+            i++;
+        }
+  //       for (int i = l; i <= mid; i++) {
+  //   while (j <= r && nums[i] > 2  * (long long)nums[j]) {
+  //     j++;
+  //   }
+  //   cnt += (j - (mid + 1));
+  // }
         i=l;
         j=mid+1;
         while(i<=mid && j<=r)
