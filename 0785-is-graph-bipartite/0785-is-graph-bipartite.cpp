@@ -4,35 +4,35 @@ public:
         int n=g.size();
         int m=g[0].size();
         
-        vector<int> visited(n,0);
-        for(int i=0;i<n;i++)
+        //vector<int> visited(n,0);
+        vector<int> col(n,0);
+        bool ans = true;
+        for(int i = 0;i<n;i++)
         {
-            if(visited[i]!=0)
-                continue;
-            
-        queue<pair<int,int>> q;
-        q.push({i,1});
-        while(q.size()>0)
+            if(col[i] == 0)
+             ans &=dfs(g,i,1,col);   
+        }
+        
+        return ans;
+    }
+    bool dfs(vector<vector<int>>& g , int node,int parcol,vector<int> &col)
+    {
+        if(col[node] !=0)
         {
-            int node=q.front().first;
-            int color=q.front().second;
-            q.pop();
-            
-            for(int i=0;i<g[node].size();i++)
-            {
-                if(visited[g[node][i]]==color)
-                    return false;
-                
-                 if(visited[g[node][i]]==0)
-                {
-                    visited[g[node][i]]=(-1*color);
-                    q.push({g[node][i],(-1*color)});
-                }
-            }
+            if(col[node] != parcol)
+                return false;
+            return true;
+        }
+        bool ans = true;
+        
+        col[node] = parcol;
+        
+        
+        for(auto adj: g[node])
+        {
+            ans &= dfs(g,adj,-1* parcol,col);
             
         }
-    }
-        
-        return true;
+        return ans;
     }
 };
