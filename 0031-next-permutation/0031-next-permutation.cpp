@@ -11,7 +11,7 @@ public:
                 break;
             }
         }
-        cout<<bpoint;
+        //cout<<bpoint;
         
         if(bpoint == -1)
         {
