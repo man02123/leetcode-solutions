@@ -1,51 +1,43 @@
+//#define pair<int,int> pi
+
 class Solution {
 public:
+    
     static bool comp(vector<int>&a,vector<int> &b)
     {
-        return a[1]>b[1];
+        return a[1]<b[1];
     }
     bool carPooling(vector<vector<int>>& t, int cap) {
-        map<int,vector<int>> end,start;
+        priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>> pq;
         
-        for(int i=0;i<t.size();i++)
-        {
-            end[t[i][2]].push_back(t[i][0]);
-            start[t[i][1]].push_back(t[i][0]);
-        }
-        //vector<vector<int>> in ;
+        sort(t.begin(),t.end(),comp);
+        // for(auto it:t)
+        //     cout<<it[1];
+        
         int maxi = INT_MIN;
         int currsum = 0;
-        for(int i =0;i<1000;i++)
+        for(int i = 0 ;i < t.size() ;i++)
         {
-           if(start.find(i)!=start.end())
+           while(pq.size()>0 && pq.top().first<=t[i][1])
            {
-               for(auto it:start[i])
-                   currsum+=it;
+               currsum -=pq.top().second;
+               pq.pop();
+               
            }
-            if(end.find(i)!=end.end())
-           {
-               for(auto it:end[i])
-                   currsum-=it;
-           }
-            maxi  = max(currsum,maxi);
+            currsum+=t[i][0];
+            maxi = max(maxi,currsum);
+            //cout<<currsum;
+            
+            pq.push({t[i][2],t[i][0]});   
             
         }
+        
         if(maxi>cap)
             return false;
         return true;
         
         
-        
-//         in.push_back({t[1],t[2]});
-//         for(int i=1;i<t.size();i++)
-//         {
-//             if(in.back()[1]>t[i][1])
-//                 in.push_back({t[i][1],t[i][2]});
-            
-//             else if()
-            
-//         }
-        
+
         
     }
 };
