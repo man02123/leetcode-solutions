@@ -1,13 +1,32 @@
 class Solution {
 public:
     int kthFactor(int n, int k) {
+        vector<int> fact(n);
         
-        for(int i = 1;i<=n;i++)
+        int l= k;
+       
+        for(int i = 1;i<sqrt(n);i++)
         {
             if(n%i == 0)
-                k--;
+            {
+               k--; 
+            } 
              if(k==0)
                  return i;
+        }
+        
+        for(int i  =sqrt(n);i>=1;i--)
+        {
+            if(n % (n/i)==0)
+            {
+                k--;
+                
+            }
+            if(k==0)
+            {
+                return n/i;
+            }
+            
         }
         return -1;
     }
