@@ -17,7 +17,7 @@ public:
                 if(g[i][j]==2)
                 {
                     q.push({0,{i,j}});
-                    vis[i][j]=2;
+                   // vis[i][j]=2;
                 }
             }
         }
@@ -39,8 +39,8 @@ public:
                 int nx = x+dx[i];
                 int ny = y+dy[i];
                 
-                if(nx>=0 && nx<g.size() && ny>=0 && ny<g[0].size() && vis[nx][ny]!=2 && g[nx][ny]==1){
-                    vis[nx][ny] = 2;
+                if(nx>=0 && nx<g.size() && ny>=0 && ny<g[0].size() && g[nx][ny]!=2 && g[nx][ny]==1){
+                    g[nx][ny] = 2;
                     q.push({t+1,{nx,ny}});
                     
                 }
