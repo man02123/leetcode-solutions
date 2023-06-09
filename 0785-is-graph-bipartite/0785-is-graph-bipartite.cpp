@@ -1,38 +1,47 @@
 class Solution {
-public:
-    bool isBipartite(vector<vector<int>>& g) {
-        int n=g.size();
-        int m=g[0].size();
-        
-        //vector<int> visited(n,0);
-        vector<int> col(n,0);
-        bool ans = true;
-        for(int i = 0;i<n;i++)
-        {
-            if(col[i] == 0)
-             ans &=dfs(g,i,1,col);   
-        }
-        
-        return ans;
-    }
-    bool dfs(vector<vector<int>>& g , int node,int parcol,vector<int> &col)
-    {
-        if(col[node] !=0)
-        {
-            if(col[node] != parcol)
-                return false;
-            return true;
-        }
-        bool ans = true;
-        
-        col[node] = parcol;
-        
-        
-        for(auto adj: g[node])
-        {
-            ans &= dfs(g,adj,-1* parcol,col);
-            
-        }
-        return ans;
-    }
+public:bool ans;
+    bool isBipartite(vector<vector<int>>& adj) {
+    ans = true;
+	    
+	    int V = adj.size();
+	    vector<int> vis(V),col(V,0);
+	    
+	    
+	    for(int i = 0 ;i<V;i++){
+	        
+	        if(!vis[i]){
+	            bfs(i,vis,col,adj);
+	        }
+	    }
+	    return ans;
+	    
+	}
+	void bfs(int node  , vector<int> &vis , vector<int>&col , vector<vector<int>>&adj){
+	    
+	   queue<pair<int,int>> q;
+	   q.push({node,1});
+	   
+	   while(q.size() >0){
+	       int n = q.front().first;
+	       int clr =q.front().second;
+	       q.pop();
+	       
+	       for(auto it:adj[n])
+	       {
+	           if(vis[it] && col[it] == clr)
+	           {
+	               ans = false;
+	               return;
+	           }
+	           else if(!vis[it])
+	           {
+	               q.push({it,-1*clr});
+	               col[it] = -1*clr;
+	               vis[it] = 1;
+	           }
+	              
+	       }
+       }
+	    
+	}
 };
