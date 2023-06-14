@@ -23,8 +23,8 @@ public:vector<int> dx;
             int y = pq.top().second.second;
             
             int pmin = pq.top().first;
-            if(x==m-1 && y==n-1)
-                return pmin;
+            // if(x==m-1 && y==n-1)
+            //     return pmin;
             pq.pop();
 
             for(int i = 0;i<4;i++){
