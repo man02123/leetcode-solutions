@@ -10,24 +10,29 @@
  * };
  */
 class Solution {
-public:vector<int> res;
+public:TreeNode* prev ;
+    int ans;
     int getMinimumDifference(TreeNode* root) {
+        ans= INT_MAX;
+        prev= NULL;
         help(root);
-        //sort(begin(res),end(res));
-        int mn=INT_MAX;
-        for(int i=1;i<res.size();i++)
-        {
-            mn=min(mn,res[i]-res[i-1]);
-        }
-        return mn;
+        return ans;
     }
-    void help(TreeNode* root)
+       
+    void help( TreeNode* root)
     {
-        if(root==nullptr)return ;
-        help(root->left);
-        res.push_back(root->val);
+        if(root->left)
+        {
+             help(root->left );
+        }
+            if(prev)
+                ans = min(ans,abs(prev->val - root->val));
+            
         
-        help(root->right);
-        
+        prev= root;
+        if(root->right){
+            help(root->right);
+        }
+        // return ans;
     }
 };
