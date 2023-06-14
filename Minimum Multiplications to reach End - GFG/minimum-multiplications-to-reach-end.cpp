@@ -11,13 +11,15 @@ using namespace std;
 class Solution {
   public:
     int minimumMultiplications(vector<int>& arr, int s, int e) {
-      priority_queue<pair<int,int> , vector<pair<int,int>> , greater<pair<int,int>>> pq ;
+      
+      //priority_queue<pair<int,int> , vector<pair<int,int>> , greater<pair<int,int>>> pq ;
+      queue<pair<int,int>> pq;
       vector<int> ways(100001 , INT_MAX);
       pq.push({0,s});
       while(pq.size() > 0){
           
-          int node = pq.top().second;
-          int steps = pq.top().first;
+          int node = pq.front().second;
+          int steps = pq.front().first;
           pq.pop();
           if(node == e)
           return steps;
