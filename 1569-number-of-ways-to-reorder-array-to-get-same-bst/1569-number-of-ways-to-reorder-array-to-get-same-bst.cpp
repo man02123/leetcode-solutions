@@ -26,7 +26,7 @@ public:vector<vector<long long>> ncr;
             if (nums[i] > nums[0]) r.push_back(nums[i]);
             else l.push_back(nums[i]);
         }
-        int n = l.size(), m = r.size();
-        return solve(l) * solve(r) % MOD * ncr[n + m][n] % MOD;
+        int left = l.size(), m = r.size();
+        return solve(l) * solve(r) % MOD * ncr[nums.size()-1][left] % MOD;
     }
 };
