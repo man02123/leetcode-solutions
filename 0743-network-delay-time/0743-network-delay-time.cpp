@@ -1,54 +1,35 @@
 class Solution {
-public:typedef pair<int,int> pi;
+public:
     int networkDelayTime(vector<vector<int>>& t, int n, int k) {
-        vector<vector<int>> graph[n+1];
+        vector<int> dist(n+1);
         
-        for(auto it:t)
-        {
-            graph[it[0]].push_back({it[1],it[2]});
-        }
-        vector<int> visited (n+1,0);
-        vector<int> res(n+1,INT_MAX);
+        for(int i =0;i<=n;i++)
+            dist[i] = 1e8;
         
-        priority_queue<pi,vector<pi>,greater<pi>> pq;
-        
-        pq.push({0,k});
-        visited[k] =1;
-        res[k] = 0;
-        
-        while(!pq.empty())
-        {
-            int node = pq.top().second;
-            int time = pq.top().first;
-            pq.pop();
+        dist[k] = 0;
+        for(int i = 1;i<=n;i++){
             
-            for(auto it:graph[node])
-            {
-                int adjnode = it[0];
-                int tt =it[1];
-                if(visited[adjnode] ==0)
-                {
-                    res[adjnode] = time+tt;
-                    pq.push({time+tt,adjnode});
-                    visited[adjnode] = 1;
-                }
-                else
-                {
-                    if(time+tt<res[adjnode])
-                    {
-                       res[adjnode] = time+tt;
-                       pq.push({time+tt,adjnode}); 
-                    }
-                }
+            for(auto it:t){
+                int u = it[0];
+                int v =it[1];
+                int wt = it[2];
+                
+                if(dist[u]+wt<dist[v])
+                    dist[v] = wt+dist[u];
+                
             }
         }
-        int x = -1;
-        for(int i=1;i<=n;i++)
-            x = max(x,res[i]);
         
-        return (x==INT_MAX)?-1:x;
+        for(auto it = 1;it<=n;it++){
+            if(dist[it]==1e8)
+                return -1;
+        }
+        int ans = -1;
+        for(auto it:dist)
+            if(it!=1e8)
+            ans = max(ans,it);
         
-        
+        return ans;
         
     }
 };
