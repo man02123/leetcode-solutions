@@ -32,11 +32,15 @@ public:int n,m;
                   if(g[nx][ny] == 1  && dist[nx][ny]>ob+1)
                   {
                       dist[nx][ny] = 1+ob;
+                      if(nx == m-1 && ny ==n-1)
+                          return dist[nx][ny];
                       pq.push({dist[nx][ny],{nx,ny}});
                   }
                     else if( g[nx][ny] == 0  && dist[nx][ny]>ob)
                     {
                         dist[nx][ny] = ob;
+                        if(nx == m-1 && ny ==n-1)
+                          return dist[nx][ny];
                         pq.push({dist[nx][ny],{nx,ny}});
                     }
                 }
