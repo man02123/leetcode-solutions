@@ -19,8 +19,8 @@ public:
                 opt.push_back(dfs(g,vis,i));
             }
         }
-        for(auto it:opt)
-            cout<<it<<" ";
+        // for(auto it:opt)
+        //     cout<<it<<" ";
         
         ll ans = 0;
         ll tot = 0;
