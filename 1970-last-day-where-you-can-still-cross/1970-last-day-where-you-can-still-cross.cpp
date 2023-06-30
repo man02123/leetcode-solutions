@@ -6,34 +6,31 @@ public:
     int latestDayToCross(int row, int col, vector<vector<int>>& c) {
        int l =0,r=c.size()-1;
         
-        vector<vector<int>> m(row,vector<int>(col,0));
-        dx = {-1,1,0,0};
-        dy = {0,0,1,-1};
         int ans= 0;
         
         while(l<=r)
         {
             int mid = l + (r-l)/2;
-            set<pair<int,int>> st;
+            vector<vector<int>> m(row,vector<int>(col,0));
             
-            for(int i =0;i<mid;i++)
+            for(int i =0;i<=mid;i++)
             {
-                st.insert({c[i][0]-1,c[i][1]-1});
+               m[c[i][0]-1][c[i][1]-1] = 1;
             }
-            if(bfs(m,st)==true)
+            if(bfs(m)==true)
             {
-                ans= max(ans,mid);
+                ans= mid;
                 l=mid+1;
             }
             else
                 r = mid-1;
             
         }
-        return ans;
+        return ans+1;
         
         
     }
-    bool bfs(vector<vector<int>> &m ,set<pair<int,int>>&st)
+    bool bfs(vector<vector<int>> &m)
     {
         
         queue<pair<int,int>> q;
@@ -43,10 +40,10 @@ public:
         for(int i =0;i<m[0].size();i++)
         {
             
-            if(st.find({0,i}) == st.end())
+            if(m[0][i] == 0)
             {
                 q.push({0,i});
-                vis[0][i] = 1;
+                //vis[0][i] = 1;
                 
             }
         }
@@ -69,7 +66,7 @@ public:
                 int nx = x+dx[i];
                 int ny=  y+dy[i];
                 
-                if( val(nx,ny,m) && st.find({nx,ny})==st.end() && vis[nx][ny] ==0)
+                if( val(nx,ny,m) && m[nx][ny]==0 && vis[nx][ny] ==0)
                 {
                     q.push({nx,ny});
                     vis[nx][ny] = 1;
