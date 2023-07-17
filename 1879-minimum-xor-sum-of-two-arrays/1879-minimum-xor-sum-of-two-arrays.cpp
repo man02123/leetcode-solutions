@@ -4,7 +4,7 @@ public:
     int minimumXORSum(vector<int>& nums1, vector<int>& nums2) {
         int n= nums1.size();
         memset(dp,-1,sizeof(dp));
-        int mask = 0;
+        int mask = (1<<n)-1;
         
         return solve(nums1 , nums2 , 0 , mask);
     }
@@ -21,12 +21,10 @@ public:
         {
             if( mask&(1<<j))
             {
-                continue;
-            }
-                int new_mask = mask|(1<<j);
+                int new_mask = mask^(1<<j);
                 int val = nums2[j]^nums1[ind];
-            
               ans = min(ans , solve(nums1,nums2,ind+1,new_mask)+val);
+            }
                    
         }
         
