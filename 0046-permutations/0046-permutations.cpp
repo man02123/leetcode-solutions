@@ -16,9 +16,10 @@ public:vector<vector<int>> res;
         
         for(int i=ind;i<nums.size();i++)
         {
-            vector<int> v=nums;
-            swap(v[ind],v[i]);
-            backtrack(v,ind+1);
+            
+            swap(nums[ind],nums[i]);
+            backtrack(nums,ind+1);
+            swap(nums[ind],nums[i]);
         }
     }
 };
