@@ -37,8 +37,8 @@ class Solution
          while(j<=r)
          temp.push_back( arr[j++]);
          
-         for(int i =l;i<=r;i++)
-         arr[i] = temp[i-l];
+         for(int i =0;i<temp.size();i++)
+         arr[i+l] = temp[i];
          
     }
     public:
