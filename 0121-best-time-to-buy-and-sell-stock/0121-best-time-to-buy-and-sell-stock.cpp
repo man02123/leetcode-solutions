@@ -1,14 +1,16 @@
 class Solution {
 public:
     int maxProfit(vector<int>& p) {
-        int minelem=p[0];
-        int res=0;
-        for(int i=0;i<p.size();i++)
-        {
-            res=max(res,p[i]-minelem);
-            minelem=min(minelem,p[i]);
-        }
-        return res;
+        int ans  = 0;
+        int cmin = INT_MAX;
+        int n = p.size();
         
+        for(int i = 0;i<n;i++){
+            
+            ans = max(ans , (p[i]-cmin));
+            cmin = min(cmin , p[i]);
+            
+        }
+        return ans;
     }
 };
