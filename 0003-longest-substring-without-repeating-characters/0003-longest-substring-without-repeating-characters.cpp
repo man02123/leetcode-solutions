@@ -12,16 +12,12 @@ public:
             
             if(st.find(s[i]) == st.end()){
                 ans = max(ans , i+1-j);
-                
-                // cout<<s[i];
-                //continue;
+        
             }
-            else{
             
             while(j<i && st.find(s[i]) != st.end()){
                 st.erase(s[j]);
                 j++;
-            }
             }
             st.insert(s[i]);
         }
