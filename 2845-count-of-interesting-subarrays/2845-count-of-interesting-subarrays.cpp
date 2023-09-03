@@ -4,7 +4,6 @@ public:
         
         long long ans = 0;
         
-        vector<int> pre;
         long long csum = 0;
         unordered_map<int,int> mp;
         mp[0]++;
@@ -14,12 +13,13 @@ public:
             if(nums[i]%mod == k)
                 csum++;
             
-            long long temp = (csum-k) %mod;
+            long long temp = (csum-k) %mod; // if(csum-k) %mod is present => simplifing the equation cnt%mod == k to (csum-k)%mod
             
             if(mp.find(temp) != mp.end()){
                 ans += mp[temp];
             }
-            mp[csum%mod]++;
+            
+            mp[csum%mod]++;  // as we need to work on remainder only so we store remainder only
                
         }
         
