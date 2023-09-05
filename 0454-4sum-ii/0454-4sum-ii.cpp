@@ -21,8 +21,8 @@ public:
             for(int j = 0;j<n4;j++){
                 int csum  = nums3[i]+nums4[j];
                 
-                if(mp.find(-1*csum) !=mp.end()){
-                    ans += mp[-1*csum];
+                if(mp.find(0-csum) !=mp.end()){
+                    ans += mp[0-csum];
                 }
             }  
         }
