@@ -1,25 +1,24 @@
 class Solution {
 public:
     int findMin(vector<int>& nums) {
+         int ind = -1;
         
-        int ans =INT_MAX;
-        int  l = 0, r = nums.size()-1;
+        int l = 0 , r = nums.size()-1;
         
-        while(l<r)
-        {
-            int mid = (l+r)>>1;
+        while(l<r){
+            int mid = (l)+(r-l)/2;
             
-            if(nums[r]>nums[mid])
-            {
-                r = mid;
-                ans = min({nums[mid],ans,nums[l]});
-            }
-            else
-            {
-                ans = min({ans,nums[r],nums[mid]});
+            if(nums[mid] > nums[r]){
+                ind = mid+1;
                 l = mid+1;
             }
+            else
+                r = mid;
         }
-        return nums[l];
+        if(ind == -1)
+            return nums[0];
+        
+        return nums[ind];
+        
     }
 };
