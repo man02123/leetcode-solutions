@@ -1,48 +1,56 @@
 class Solution {
 public:
     int splitArray(vector<int>& nums, int k) {
-        int l=0,r=INT_MAX;
-        int res=INT_MAX;
+        int n = nums.size();
+        int l =0, r = accumulate(nums.begin(),nums.end(),0);
+        int ans = 0;
         
-        int mid;
-        while(l<r)
-        {
-            mid=(l)+(r-l)/2;
+        while(l<r){
+            int mid = l+(r-l)/2;
             
-            if(check(nums,mid,k)==true)
-            {
-                res=min(res,mid);
-                r=mid;
-            }
-           else
-               l=mid+1;   
-        }
-        return res;
-        
-    }
-    bool check(vector<int>& nums,int mid,int sub)
-    {
-        int sum=0;
-        int part=0;
-        
-        for(int i=0;i<nums.size();i++)
-        {
-            if(nums[i]>mid)
-                return false;
-            
-            
-            if(sum+nums[i]<=mid)
-            {
-                sum+=nums[i];  
+            if(check(nums , k ,mid)){
+                ans = mid;
+                r = mid;
             }
             else
-            {
-                part++;
-                sum=nums[i];
-            }  
+                l = mid+1;
         }
-        part++;
-        return (part<=sub);
+        if(k==1)
+            return accumulate(nums.begin(),nums.end(),0);
+        
+        return ans;
+        
+    }
+    int check(vector<int>& nums  , int part , int mid){
+        
+        int currpart = 0;
+        int csum = 0;
+        int mx = 0;
+        
+        for(int i =0;i<nums.size();i++){
+            if(mid < nums[i])
+                return false;
+            
+            if(nums[i]+csum > mid){
+                currpart++;
+                csum = nums[i];
+                mx = max(csum , mx);
+            }
+            else{
+                csum += nums[i];
+                mx = max(csum , mx);
+            }
+        }
+        //cout<<mx<<mid<< " ";
+        currpart++;
+        
+        // if(mx > mid)
+        //     return false;
+        
+        if(currpart <= part)
+            return true;
+        
+        return false;
         
     }
 };
