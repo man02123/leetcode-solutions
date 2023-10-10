@@ -37,11 +37,7 @@ public:
            head=head->next;
            rev=rev->next;
        }
-        // while(rev)
-        // {
-        //     cout<<rev->val;
-        //     rev=rev->next;
-        // }
+        
         
        return true; 
     }
