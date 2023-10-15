@@ -8,35 +8,55 @@
  */
 class Solution {
 public:
-    ListNode *detectCycle(ListNode *head) {
-        
-        if(head==NULL)
+    ListNode *detectCycle(ListNode *h) {
+        if(h == NULL)
             return NULL;
-        if(head->next && head->next==head)
-            return head;
-        if(head->next!=NULL && head->next->next!=NULL && head->next->next==head)
-            return head;
+        if(h->next!=nullptr && h->next == h)
+            return h;
+         if(h->next!=nullptr && h->next->next!=nullptr && h->next->next == h)
+            return h;
+     
+        ListNode *f = h,*s = h;
         
-        
-        ListNode *f =head;
-        ListNode *s = head;
-        while(f && f->next)
-        {
-            f=f->next->next;
-            s=s->next;
+        while(f && f->next){
+            
+            f= f->next->next;
+            s = s->next;
             if(f==s)
             {
-                while(s!=head)
+                while(s!=h)
                 {
                     s=s->next;
-                    head=head->next;
-                    if(head==s)
+                    h=h->next;
+                    if(h==s)
                         return s;
                 }
             }
         }
-        
         return NULL;
         
+//        ListNode *n = h;
+//         int cnt =0;
+//         while(n != s){
+//             n = n->next;
+//             cnt++;
+            
+//         }
+//         return cnt;
     }
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
