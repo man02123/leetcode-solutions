@@ -1,7 +1,7 @@
 class Solution {
 public:
     string sortVowels(string s) {
-        set<char> st;
+        set<char> st ={};
         st.insert('a');
         st.insert('e');
         st.insert('i');
