@@ -67,13 +67,13 @@ public:
                     // if((ind2 ==ca2.size() && abs(ca2.back() - num)<=k)  || (ind2==0 && abs(ca2[ind2]-num) <=k))
                     if(ind>=0 && ind<ca2.size() && abs(ca2[ind]-num)<=k )
                        ans.push_back(num);
-                     if(ind2>=0 && ind2<ca2.size() && abs(ca2[ind]-num)<=k )ans.push_back(num);
+                     else if(ind2>=0 && ind2<ca2.size() && abs(ca2[ind]-num)<=k )ans.push_back(num);
                 }
         
           sort(begin(ans),end(ans));
         
-          set<int> st = {begin(ans),end(ans)};
-        return {begin(st),end((st))};
+          //set<int> st = {begin(ans),end(ans)};
+       // return {begin(st),end((st))};
         return ans;
             
         }
